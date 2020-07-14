@@ -22,7 +22,7 @@
 // create a search bar that can accept a city name
 // save the city name
 // input - city name
-// weather API                   
+// weather API
 // input cityname into API 5 day forecast
 //out put data into a card with all the city info
 
@@ -68,30 +68,35 @@
 
 // TODO:get from local storage the last city
 
-
-
-
 // DEPENDENCIES ========
 $(document).ready(() => {
-    console.log("ready!");
+  console.log("ready!");
+});
+
+// DOM ELEMNTS
+// INITAL DATA
+
+$("#city-info-button").on("click", function () {
+  var cityName = $("#samplecity").val();
+  console.log(city);
+  var queryURL =
+    "http://api.openweathermap.org/data/2.5/forecast?q=" +
+    cityName +
+    "&appid=c257cb037b478e85c2eddd6f4749b211";
+
+    $.ajax ({
+    url: queryURL,
+    method: "GET",
+  }).then(function (response) {
+    console.log(response);
+    var iconCode = response.list[0].weather[0].icon;
+    var iconImage = "http://openweathermap.org/img/w/" + iconCode + ".png";
+    console.log(iconCode);
+    $("icon-image").attr("src", iconImage);
   });
-  // DOM ELEMNTS
-  // INITAL DATA
-  $("#city-info-button").on("click", function () {
-    var cityName = $("#city").val();
-    console.log(city);
-    var queryURL =
-      "http://api.openweathermap.org/data/2.5/forecast?q=" +
-      cityName +
-      "&appid=c7629276d88b73d9dee17485c554906b";
-    $.ajax({
-      url: queryURL,
-      method: "GET",
-    }).then(function (response) {
-      console.log(response);
-      var iconCode = response.list[0].weather[0].icon;
-      var iconImage = "http://openweathermap.org/img/w/" + iconCode + ".png";
-      console.log(iconCode);
-      $("icon-image").attr("src", iconImage);
-    });
-  });
+});
+
+// var lat = response.coord.lat
+// var long = response.coord.lon
+
+

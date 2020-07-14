@@ -21,8 +21,8 @@
     <nav class="navbar navbar-light bg-light">
         
         <form class="form-inline">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          <input class="form-control mr-sm-2" type="search" placeholder="Type City Name Here" aria-label="Search" id="city">
+          <button class="btn btn-outline-success my-2 my-sm-0" id="city-info-button" type="submit">Search</button>
         </form>
         <span id="weatherapplogo" class="navbar-brand mb-5 h1">Weather App</span>
       </nav>
@@ -40,6 +40,7 @@
             </ol>
         </div>
         <div class="col-md-7">
+            <h2>city</h2>
             <div class="card mb-3" style="width: 23rem;">
                 <div class="card-body">
                   <h5 class="card-title">Card title</h5>
@@ -89,6 +90,11 @@
      </div>
     </div>
 
+    <textarea id="samplecity"></textarea>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="script.js"></script>
     
 </body>
