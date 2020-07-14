@@ -12,10 +12,7 @@
 // SO THAT I can plan a trip accordingly
 // ```
 
-// var iconCode = response.weather[0].icon;
-// var iconImage = "http://openweathermap.org/img/w/" + iconCode + ".png";
-// console.log(iconCode);
-// $("icon-image").attr("src", iconImage);
+
 //   });
 // });
 
@@ -50,31 +47,53 @@ searchButton.click(function (event) {
     url: queryURL,
     method: "GET",
   }).then(function (response) {
-    // Create CODE HERE to log the resulting object
+    // log the resulting object response
     console.log(response);
 
     //temperature (f)
-    var temperature = response.main.temp;
-    console.log(temperature);
+    var currentCityTempEl = $("#currentCityTemp");
+    currentCityTempEl.text(response.main.temp);
+    console.log();
 
-    var currentCityName = $("#currentCityName");
-    currentCityName.text(citySearch);
-    var currentCityDate = $("#currentCityDate");
-    currentCityDate.text(moment().format("LLLL"));
-    var currentCityTemp = $("#currentCityTemp");
-    var currentCityHumidity = $("#currentCityHumidity");
-    var currentCityWindSpeed = $("currentCityWindSpeed");
+    //name
+    var currentCityNameEl = $("#currentCityName");
+    currentCityNameEl.text(citySearch);
 
-    var latitude = response.coord.lat;
-    var longitude = response.coord.lon;
-    var uvURL =
-     "http://api.openweathermap.org/data/2.5/uvi?appid=" +
-      APIKey +
-      "&lat=" +
-      latitude +
-      "&lon=" +
-      longitude;
+    //date
+    var currentCityDateEl = $("#currentCityDate");
+    currentCityDateEl.text(moment().format("LLLL"));
+
+    //temp
+    var currentCityTempEl = $("#currentCityTemp");
+    currentCityTempEl.text(response.main.temp);
+    console.log("currentwindspeed = ", response.main.temp)
+
+    //humidity
+    var currentCityHumidityEl = $("#currentCityHumidity");
+    currentCityHumidityEl.text(response.main.humidity);
+    console.log("currenthumidity = ", response.main.humidity)
+
+    //wind speed
+    var currentCityWindSpeedEl = $("#currentCityWindSpeed");
+    currentCityWindSpeedEl.text(response.wind.speed);
+    console.log("currentwindspeed = ", response.wind.speed)
+      
+    //icon 
+    var iconCode = response.weather[0].icon;
+    var iconImage = "http://openweathermap.org/img/w/" + iconCode + ".png";
+    console.log(iconCode);
+    $("icon-image").attr("src", iconImage);
   });
+
+  // var latitude = response.coord.lat;
+  // var longitude = response.coord.lon;
+  // var uvURL =
+  //  "http://api.openweathermap.org/data/2.5/uvi?appid=" +
+  //   APIKey +
+  //   "&lat=" +
+  //   latitude +
+  //   "&lon=" +
+  //   longitude;
 });
 
 // Create CODE HERE to transfer content to HTML
