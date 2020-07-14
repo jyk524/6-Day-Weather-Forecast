@@ -12,9 +12,73 @@
 // SO THAT I can plan a trip accordingly
 // ```
 
-// ## Acceptance Criteria
+// var iconCode = response.weather[0].icon;
+// var iconImage = "http://openweathermap.org/img/w/" + iconCode + ".png";
+// console.log(iconCode);
+// $("icon-image").attr("src", iconImage);
+//   });
+// });
 
-// ```
+// var lat = response.coord.lat
+// var long = response.coord.lon
+
+// DEPENDENCIES ========
+$(document).ready(() => {
+  console.log("ready!");
+});
+
+// Id for the searchbar text
+var searchButton = $("#city-info-button");
+searchButton.click(function (event) {
+  //targeting the text area
+  var citySearch = $("#citySearch").val();
+  console.log("citySearch = ", citySearch);
+  var APIKey = "c257cb037b478e85c2eddd6f4749b211";
+  var queryURL =
+    "http://api.openweathermap.org/data/2.5/weather?q=" +
+    citySearch +
+    "&appid=" +
+    APIKey +
+    // added to get imperial units of measure
+    "&units=imperial";
+  console.log("queryURL = ", queryURL);
+  // to prevent the website from reloading on button press
+  event.preventDefault();
+
+  // AJAX call
+  $.ajax({
+    url: queryURL,
+    method: "GET",
+  }).then(function (response) {
+    // Create CODE HERE to log the resulting object
+    console.log(response);
+
+    //temperature (f)
+    var temperature = response.main.temp;
+    console.log(temperature);
+
+    var currentCityName = $("#currentCityName");
+    currentCityName.text(citySearch);
+    var currentCityDate = $("#currentCityDate");
+    currentCityDate.text(moment().format("LLLL"));
+    var currentCityTemp = $("#currentCityTemp");
+    var currentCityHumidity = $("#currentCityHumidity");
+    var currentCityWindSpeed = $("currentCityWindSpeed");
+
+    var latitude = response.coord.lat;
+    var longitude = response.coord.lon;
+    var uvURL =
+     "http://api.openweathermap.org/data/2.5/uvi?appid=" +
+      APIKey +
+      "&lat=" +
+      latitude +
+      "&lon=" +
+      longitude;
+  });
+});
+
+// Create CODE HERE to transfer content to HTML
+
 // GIVEN a weather dashboard with form inputs
 // WHEN I search for a city
 
@@ -24,7 +88,7 @@
 // input - city name
 // weather API
 // input cityname into API 5 day forecast
-//out put data into a card with all the city info
+// output data into a card with all the city info
 
 // THEN I am presented with current and future conditions for that city and that city is added to the search history
 
@@ -67,36 +131,3 @@
 // THEN I am presented with the last searched city forecast
 
 // TODO:get from local storage the last city
-
-// DEPENDENCIES ========
-$(document).ready(() => {
-  console.log("ready!");
-});
-
-// DOM ELEMNTS
-// INITAL DATA
-
-$("#city-info-button").on("click", function () {
-  var cityName = $("#samplecity").val();
-  console.log(city);
-  var queryURL =
-    "http://api.openweathermap.org/data/2.5/forecast?q=" +
-    cityName +
-    "&appid=c257cb037b478e85c2eddd6f4749b211";
-
-    $.ajax ({
-    url: queryURL,
-    method: "GET",
-  }).then(function (response) {
-    console.log(response);
-    var iconCode = response.list[0].weather[0].icon;
-    var iconImage = "http://openweathermap.org/img/w/" + iconCode + ".png";
-    console.log(iconCode);
-    $("icon-image").attr("src", iconImage);
-  });
-});
-
-// var lat = response.coord.lat
-// var long = response.coord.lon
-
-
