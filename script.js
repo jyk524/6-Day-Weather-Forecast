@@ -71,7 +71,27 @@
 
 
 
-$("#city-info-button").click(function (e) { 
-    e.preventDefault();
-    
-});
+// DEPENDENCIES ========
+$(document).ready(() => {
+    console.log("ready!");
+  });
+  // DOM ELEMNTS
+  // INITAL DATA
+  $("#city-info-button").on("click", function () {
+    var cityName = $("#city").val();
+    console.log(city);
+    var queryURL =
+      "http://api.openweathermap.org/data/2.5/forecast?q=" +
+      cityName +
+      "&appid=c7629276d88b73d9dee17485c554906b";
+    $.ajax({
+      url: queryURL,
+      method: "GET",
+    }).then(function (response) {
+      console.log(response);
+      var iconCode = response.list[0].weather[0].icon;
+      var iconImage = "http://openweathermap.org/img/w/" + iconCode + ".png";
+      console.log(iconCode);
+      $("icon-image").attr("src", iconImage);
+    });
+  });
