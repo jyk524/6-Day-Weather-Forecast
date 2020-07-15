@@ -1,10 +1,10 @@
 TODO:input - city name
-weather API                   
+weather API  
 input cityname into API 5 day forecast
 
 THEN I am presented with current and future conditions for that city and that city is added to the search history
 
-TODO:api returns weather condition for the city and the city is added to search history -  local storage
+TODO:api returns weather condition for the city and the city is added to search history - local storage
 
 WHEN I view current weather conditions for that city
 THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index
@@ -46,5 +46,16 @@ TODO:get from local storage the last city
 
 Assets\06-server-side-apis-homework-demo.png
 
+used ajax to pull data and added to bootstrap cards to show the weather conditions
 
-used ajax to pull data and added to bootstrap cards
+        city name
+        date
+        icon for weather
+        temperature
+        humidity
+        wind speed
+        UV index
+            UV index has a color coded background that let's us know strong the sun is
+
+used an api for the current date, and another for the 5 forecast which gives the weather at noon for the city
+added a history to store searched cities
