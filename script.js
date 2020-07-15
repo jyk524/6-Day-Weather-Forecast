@@ -1,24 +1,3 @@
-// # 06 Server-Side APIs: Weather Dashboard
-
-// Developers are often tasked with retrieving data from another application's API and using it in the context of their own. Third-party APIs allow developers to access their data and functionality by making requests with specific parameters to a URL. Your challenge is to build a weather dashboard that will run in the browser and feature dynamically updated HTML and CSS.
-
-// Use the [OpenWeather API](https://openweathermap.org/api) to retrieve weather data for cities. The documentation includes a section called "How to start" that will provide basic setup and usage instructions. Use `localStorage` to store any persistent data.
-
-// ## User Story
-
-// ```
-// AS A traveler
-// I WANT to see the weather outlook for multiple cities
-// SO THAT I can plan a trip accordingly
-// ```
-
-//   });
-// });
-
-// var lat = response.coord.lat
-// var long = response.coord.lon
-
-// DEPENDENCIES ========
 $(document).ready(() => {
   console.log("ready!");
 });
@@ -30,23 +9,21 @@ var searchButton = $("#city-info-button");
 var cities = [];
 
 searchButton.click(function (event) {
-
   var city = $("#citySearch").val();
   var newLi = $("<li>");
-  newLi.text(city)
-  $("#city-list").append("<li>" + city + "</li>")
+  newLi.text(city);
+  $("#city-list").append("<li>" + city + "</li>");
   cities.push(city);
-  console.log("cititesarr", cities)
-  localStorage.setItem("cities", cities)
+  console.log("cititesarr", cities);
+  localStorage.setItem("cities", cities);
   var storedCitites = localStorage.getItem("cities");
-  console.log("storedcities = ", storedCitites)
+  console.log("storedcities = ", storedCitites);
   var newCitiesArray = storedCitites.split(",");
   // for(var i = 0; i < newCitiesArray.length; i++) {
   //   var newLi = $("<li>")
   //   newLi.text(newCitiesArray[i]);
   //   $("#city-list").append("<li>" + newCitiesArray[i] + "<li");
   // }
-
 
   //targeting the text area
   var citySearch = $("#citySearch").val();
@@ -125,6 +102,7 @@ searchButton.click(function (event) {
     }).then(function (result) {
       console.log("UVobject = ", result);
       var uvIndex = result.value;
+      //UV index classes set via adding classes to the UV ID based on the UV index
       $("#currentUVindex").text(uvIndex);
       if (uvIndex < 2) {
         $("#currentUVindex").attr("class", "low");
@@ -181,7 +159,9 @@ searchButton.click(function (event) {
     $("#icon-image1").attr("alt", iconImage);
 
     // Day two
-    var secondDay = moment(response.list[11].dt_txt).format("dddd MMMM Do YYYY");
+    var secondDay = moment(response.list[11].dt_txt).format(
+      "dddd MMMM Do YYYY"
+    );
     $("#two").text(secondDay);
     console.log(secondDay);
 
