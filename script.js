@@ -12,7 +12,6 @@
 // SO THAT I can plan a trip accordingly
 // ```
 
-
 //   });
 // });
 
@@ -26,6 +25,10 @@ $(document).ready(() => {
 
 // Id for the searchbar text
 var searchButton = $("#city-info-button");
+
+// array for accepting cities for saving to local storage
+var pastCityArr = [];
+
 searchButton.click(function (event) {
   //targeting the text area
   var citySearch = $("#citySearch").val();
@@ -57,7 +60,7 @@ searchButton.click(function (event) {
 
     //name
     var currentCityNameEl = $("#currentCityName");
-    currentCityNameEl.text(citySearch);
+    currentCityNameEl.text(response.name);
 
     //date
     var currentCityDateEl = $("#currentCityDate");
@@ -66,35 +69,170 @@ searchButton.click(function (event) {
     //temp
     var currentCityTempEl = $("#currentCityTemp");
     currentCityTempEl.text(response.main.temp);
-    console.log("currentwindspeed = ", response.main.temp)
+    console.log("currentwindspeed = ", response.main.temp);
 
     //humidity
     var currentCityHumidityEl = $("#currentCityHumidity");
     currentCityHumidityEl.text(response.main.humidity);
-    console.log("currenthumidity = ", response.main.humidity)
+    console.log("currenthumidity = ", response.main.humidity);
 
     //wind speed
     var currentCityWindSpeedEl = $("#currentCityWindSpeed");
     currentCityWindSpeedEl.text(response.wind.speed);
-    console.log("currentwindspeed = ", response.wind.speed)
-      
-    //icon 
+    console.log("currentwindspeed = ", response.wind.speed);
+
+    //icon
     var iconCode = response.weather[0].icon;
     var iconImage = "http://openweathermap.org/img/w/" + iconCode + ".png";
-    console.log(iconCode);
-    $("icon-image").attr("src", iconImage);
+    console.log("iconcode = ", iconCode);
+    $("#icon-image").attr("src", iconImage);
+    $("#icon-image").attr("alt", iconImage);
+
+    // creating variables for latitude and longitude
+    // UV index URL
+    var latitude = response.coord.lat;
+    var longitude = response.coord.lon;
+    var uvQueryURL =
+      "http://api.openweathermap.org/data/2.5/uvi?appid=" +
+      APIKey +
+      "&lat=" +
+      latitude +
+      "&lon=" +
+      longitude;
+
+    $.ajax({
+      url: uvQueryURL,
+      method: "GET",
+    }).then(function (result) {
+      console.log("UVobject = ", result);
+      var uvIndex = result.value;
+      $("#currentUVindex").text(uvIndex);
+      if (uvIndex < 2) {
+        $("#currentUVindex").attr("class", "low");
+        console.log("You're safe!");
+      }
+      if (uvIndex >= 2 && uvIndex <= 5) {
+        $("#currentUVindex").attr("class", "moderate");
+        console.log("Getting risky");
+      }
+      if (uvIndex > 5 && uvIndex <= 7) {
+        $("#currentUVindex").attr("class", "high");
+        console.log("Drop it like it's hot");
+      }
+      if (uvIndex > 7 && uvIndex <= 10) {
+        $("#currentUVindex").attr("class", "very-high");
+        console.log("You better stay inside!");
+      }
+      if (uvIndex > 10) {
+        $("#currentUVindex").attr("class", "extreme");
+        console.log("This girl is on fiyah");
+      }
+    });
   });
 
-  // var latitude = response.coord.lat;
-  // var longitude = response.coord.lon;
-  // var uvURL =
-  //  "http://api.openweathermap.org/data/2.5/uvi?appid=" +
-  //   APIKey +
-  //   "&lat=" +
-  //   latitude +
-  //   "&lon=" +
-  //   longitude;
+  //&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+  //forcast cards
+  // &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+
+  // five Day Forecast
+  var forecastURL =
+    "http://api.openweathermap.org/data/2.5/forecast?q=" +
+    citySearch +
+    "&appid=c7629276d88b73d9dee17485c554906b" +
+    "&units=imperial";
+  $.ajax({
+    url: forecastURL,
+    method: "GET",
+  }).then(function (response) {
+    console.log("forecast = ", response);
+
+    // Day one
+    var firstDay = moment(response.list[3].dt_txt).format("dddd MMMM Do YYYY");
+    $("#one").text(firstDay);
+    console.log(firstDay);
+
+    $("#temperature-one").text(response.list[3].main.temp);
+    $("#humidity-one").text(response.list[3].main.humidity);
+    $("#wind-speed-one").text(response.list[3].wind.speed);
+    //icon
+    var iconCode = response.list[3].weather[0].icon;
+    var iconImage = "http://openweathermap.org/img/w/" + iconCode + ".png";
+    console.log("iconcode = ", iconCode);
+    $("#icon-image1").attr("src", iconImage);
+    $("#icon-image1").attr("alt", iconImage);
+
+    // Day two
+    var secondDay = moment(response.list[11].dt_txt).format("dddd MMMM Do YYYY");
+    $("#two").text(secondDay);
+    console.log(secondDay);
+
+    $("#temperature-two").text(response.list[11].main.temp);
+    $("#humidity-two").text(response.list[11].main.humidity);
+    $("#wind-speed-two").text(response.list[11].wind.speed);
+    //icon
+    var iconCode = response.list[11].weather[0].icon;
+    var iconImage = "http://openweathermap.org/img/w/" + iconCode + ".png";
+    console.log("iconcode = ", iconCode);
+    $("#icon-image2").attr("src", iconImage);
+    $("#icon-image2").attr("alt", iconImage);
+
+    // Day three
+    var thirdDay = moment(response.list[19].dt_txt).format("dddd MMMM Do YYYY");
+    $("#three").text(thirdDay);
+    console.log(thirdDay);
+
+    $("#temperature-three").text(response.list[19].main.temp);
+    $("#humidity-three").text(response.list[19].main.humidity);
+    $("#wind-speed-three").text(response.list[19].wind.speed);
+    //icon
+    var iconCode = response.list[19].weather[0].icon;
+    var iconImage = "http://openweathermap.org/img/w/" + iconCode + ".png";
+    console.log("iconcode = ", iconCode);
+    $("#icon-image3").attr("src", iconImage);
+    $("#icon-image3").attr("alt", iconImage);
+
+    // Day four
+    var fourthDay = moment(response.list[27].dt_txt).format(
+      "dddd MMMM Do YYYY"
+    );
+    $("#four").text(fourthDay);
+    console.log(fourthDay);
+
+    $("#temperature-four").text(response.list[27].main.temp);
+    $("#humidity-four").text(response.list[27].main.humidity);
+    $("#wind-speed-four").text(response.list[27].wind.speed);
+    //icon
+    var iconCode = response.list[27].weather[0].icon;
+    var iconImage = "http://openweathermap.org/img/w/" + iconCode + ".png";
+    console.log("iconcode = ", iconCode);
+    $("#icon-image4").attr("src", iconImage);
+    $("#icon-image4").attr("alt", iconImage);
+
+    // Day five
+    var fifthDay = moment(response.list[35].dt_txt).format("dddd MMMM Do YYYY");
+    $("#five").text(fifthDay);
+    console.log(fifthDay);
+
+    $("#temperature-five").text(response.list[35].main.temp);
+    $("#humidity-five").text(response.list[35].main.humidity);
+    $("#wind-speed-five").text(response.list[35].wind.speed);
+    //icon
+    var iconCode = response.list[35].weather[0].icon;
+    var iconImage = "http://openweathermap.org/img/w/" + iconCode + ".png";
+    console.log("iconcode = ", iconCode);
+    $("#icon-image5").attr("src", iconImage);
+    $("#icon-image5").attr("alt", iconImage);
+  });
+  pushInfo();
 });
+
+function pushInfo() {
+      if (!pastCityArr.includes(citySearch)) {
+        pastCityArr.push(citySearch);
+        localStorage.setItem("pastCityArr", JSON.stringify(pastCityArr));
+        console.log("pastCityArr = ", pastCityArr);
+      }
+}
 
 // Create CODE HERE to transfer content to HTML
 

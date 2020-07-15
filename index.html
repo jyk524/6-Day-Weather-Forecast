@@ -40,62 +40,70 @@
                 <li class="cities">past cities</li>
             </ol>
         </div>
-        <div class="col-md-7">
+        <icon-image class="col-md-7">
             <div class="card mb-3" style="width: 23rem;">
                 <div class="card-body">
                   <h5 class="card-title" id="currentCityName"></h5>
                   <hr>
                   <h6 class="card-subtitle mb-2 text-muted" id="currentCityDate"></h6>
-                  <img id="icon-image" src="" alt="weather image">
+                  <img id="icon-image" src="" >
                   <p class="card-text">Temperature : <span id="currentCityTemp"></span></p>
                   <p class="card-text">Humidity : <span id="currentCityHumidity"></span></p>
                   <p class="card-text">Wind Speed : <span id="currentCityWindSpeed"></span></p>
                   <p class="card-text">UV index : <span id="currentUVindex"></span></p>
-            
-
                 </div>
-            </div>
-        </div>
+              </div>
     </div>
 
+    <!-- Five day forecast -->
     <div class ="row">
-    <div class="card border-dark mb-2" style="max-width: 12rem;">
-        <div class="card-header cityNamecard">Header</div>
-        <div class="card-body text-dark">
-          <h5 class="card-title">Dark card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
-      </div>
       <div class="card border-dark mb-2" style="max-width: 12rem;">
-        <div class="card-header cityNamecard">Header</div>
-        <div class="card-body text-dark">
-          <h5 class="card-title">Dark card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <div class="card-header cityNamecard" id='one'></div>
+          <div class="card-body text-dark">
+            <p class="card-text">Temperature: <span id='temperature-one'></span></p>
+            <p class="card-text">Humidity: <span id='humidity-one'></span></p>
+            <p class="card-text">Wind Speed: <span id='wind-speed-one'></span></p>
+            <img id='icon-image1' src="">
+          </div>
         </div>
-      </div>
-      <div class="card border-dark mb-2" style="max-width: 12rem;">
-        <div class="card-header cityNamecard">Header</div>
-        <div class="card-body text-dark">
-          <h5 class="card-title">Dark card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <div class="card border-dark mb-2" style="max-width: 12rem;">
+          <div class="card-header cityNamecard" id='two'></div>
+          <div class="card-body text-dark">
+            <p class="card-text">Temperature: <span id='temperature-two'></span></p>
+            <p class="card-text">Humidity: <span id='humidity-two'></span></p>
+            <p class="card-text">Wind Speed: <span id='wind-speed-two'></span></p>
+            <img id='icon-image2' src="">
+          </div>
         </div>
-      </div>
-      <div class="card border-dark mb-2" style="max-width: 12rem;">
-        <div class="card-header cityNamecard">Header</div>
-        <div class="card-body text-dark">
-          <h5 class="card-title">Dark card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <div class="card border-dark mb-2" style="max-width: 12rem;">
+          <div class="card-header cityNamecard" id='three'></div>
+          <div class="card-body text-dark">
+            <p class="card-text">Temperature: <span id='temperature-three'></span></p>
+            <p class="card-text">Humidity: <span id='humidity-three'></span></p>
+            <p class="card-text">Wind Speed: <span id='wind-speed-three'></span></p>
+            <img id='icon-image3' src=""> 
+          </div>
         </div>
-      </div>
-      <div class="card border-dark mb-2" style="max-width: 12rem;">
-        <div class="card-header cityNamecard">Header</div>
-        <div class="card-body text-dark">
-          <h5 class="card-title">Dark card title</h5>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <div class="card border-dark mb-2" style="max-width: 12rem;">
+          <div class="card-header cityNamecard" id='four'></div>
+          <div class="card-body text-dark">
+            <p class="card-text">Temperature:<span id='temperature-four'></span></p>
+            <p class="card-text">Humidity:<span id='humidity-four'></span></p>
+            <p class="card-text">Wind Speed:<span id='wind-speed-four'></span></p>
+            <img id='icon-image4' src=""> 
+          </div>
         </div>
+        <div class="card border-dark mb-2" style="max-width: 12rem;">
+          <div class="card-header cityNamecard" id='five'></div>
+          <div class="card-body text-dark">
+            <p class="card-text">Temperature: <span id='temperature-five'></span></p>
+            <p class="card-text">Humidity: <span id='humidity-five'></span></p>
+            <p class="card-text">Wind Speed: <span id='wind-speed-five'></span></p>
+            <img id='icon-image5' src=""> 
+          </div>
+        </div>
+       </div>
       </div>
-     </div>
-    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript"></script>
