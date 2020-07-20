@@ -30,7 +30,7 @@ searchButton.click(function (event) {
   console.log("citySearch = ", citySearch);
   var APIKey = "c257cb037b478e85c2eddd6f4749b211";
   var queryURL =
-    "http://api.openweathermap.org/data/2.5/weather?q=" +
+    "https://api.openweathermap.org/data/2.5/weather?q=" +
     citySearch +
     "&appid=" +
     APIKey +
@@ -79,7 +79,7 @@ searchButton.click(function (event) {
 
     //icon
     var iconCode = response.weather[0].icon;
-    var iconImage = "http://openweathermap.org/img/w/" + iconCode + ".png";
+    var iconImage = "https://openweathermap.org/img/w/" + iconCode + ".png";
     console.log("iconcode = ", iconCode);
     $("#icon-image").attr("src", iconImage);
     $("#icon-image").attr("alt", iconImage);
@@ -89,7 +89,7 @@ searchButton.click(function (event) {
     var latitude = response.coord.lat;
     var longitude = response.coord.lon;
     var uvQueryURL =
-      "http://api.openweathermap.org/data/2.5/uvi?appid=" +
+      "https://api.openweathermap.org/data/2.5/uvi?appid=" +
       APIKey +
       "&lat=" +
       latitude +
@@ -133,7 +133,7 @@ searchButton.click(function (event) {
 
   // five Day Forecast
   var forecastURL =
-    "http://api.openweathermap.org/data/2.5/forecast?q=" +
+    "https://api.openweathermap.org/data/2.5/forecast?q=" +
     citySearch +
     "&appid=c7629276d88b73d9dee17485c554906b" +
     "&units=imperial";
@@ -153,7 +153,7 @@ searchButton.click(function (event) {
     $("#wind-speed-one").text(response.list[3].wind.speed);
     //icon
     var iconCode = response.list[3].weather[0].icon;
-    var iconImage = "http://openweathermap.org/img/w/" + iconCode + ".png";
+    var iconImage = "https://openweathermap.org/img/w/" + iconCode + ".png";
     console.log("iconcode = ", iconCode);
     $("#icon-image1").attr("src", iconImage);
     $("#icon-image1").attr("alt", iconImage);
@@ -170,7 +170,7 @@ searchButton.click(function (event) {
     $("#wind-speed-two").text(response.list[11].wind.speed);
     //icon
     var iconCode = response.list[11].weather[0].icon;
-    var iconImage = "http://openweathermap.org/img/w/" + iconCode + ".png";
+    var iconImage = "https://openweathermap.org/img/w/" + iconCode + ".png";
     console.log("iconcode = ", iconCode);
     $("#icon-image2").attr("src", iconImage);
     $("#icon-image2").attr("alt", iconImage);
@@ -185,7 +185,7 @@ searchButton.click(function (event) {
     $("#wind-speed-three").text(response.list[19].wind.speed);
     //icon
     var iconCode = response.list[19].weather[0].icon;
-    var iconImage = "http://openweathermap.org/img/w/" + iconCode + ".png";
+    var iconImage = "https://openweathermap.org/img/w/" + iconCode + ".png";
     console.log("iconcode = ", iconCode);
     $("#icon-image3").attr("src", iconImage);
     $("#icon-image3").attr("alt", iconImage);
@@ -202,7 +202,7 @@ searchButton.click(function (event) {
     $("#wind-speed-four").text(response.list[27].wind.speed);
     //icon
     var iconCode = response.list[27].weather[0].icon;
-    var iconImage = "http://openweathermap.org/img/w/" + iconCode + ".png";
+    var iconImage = "https://openweathermap.org/img/w/" + iconCode + ".png";
     console.log("iconcode = ", iconCode);
     $("#icon-image4").attr("src", iconImage);
     $("#icon-image4").attr("alt", iconImage);
@@ -217,7 +217,7 @@ searchButton.click(function (event) {
     $("#wind-speed-five").text(response.list[35].wind.speed);
     //icon
     var iconCode = response.list[35].weather[0].icon;
-    var iconImage = "http://openweathermap.org/img/w/" + iconCode + ".png";
+    var iconImage = "https://openweathermap.org/img/w/" + iconCode + ".png";
     console.log("iconcode = ", iconCode);
     $("#icon-image5").attr("src", iconImage);
     $("#icon-image5").attr("alt", iconImage);
