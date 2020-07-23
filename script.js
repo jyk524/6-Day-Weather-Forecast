@@ -5,20 +5,29 @@ $(document).ready(() => {
 // Id for the searchbar text
 var searchButton = $("#city-info-button");
 
+var cities;
 // array for accepting cities for saving to local storage
-var cities = [];
+
+if (localStorage.getItem(cities) === null) {
+  cities = [];
+} else {
+  cities = JSON.parse(localStorage.getItem(cities));
+}
 
 searchButton.click(function (event) {
+  event.preventDefault();
   var city = $("#citySearch").val();
   var newLi = $("<li>");
   newLi.text(city);
   $("#city-list").append("<li>" + city + "</li>");
   cities.push(city);
+
   console.log("cititesarr", cities);
-  localStorage.setItem("cities", cities);
-  var storedCitites = localStorage.getItem("cities");
+  localStorage.setItem("cities", JSON.stringify(cities));
+  var storedCitites = JSON.parse(localStorage.getItem("cities"));
   console.log("storedcities = ", storedCitites);
-  var newCitiesArray = storedCitites.split(",");
+  // var newCitiesArray = storedCitites.split(",");
+
   // for(var i = 0; i < newCitiesArray.length; i++) {
   //   var newLi = $("<li>")
   //   newLi.text(newCitiesArray[i]);
